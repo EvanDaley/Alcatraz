@@ -1,0 +1,76 @@
+﻿	//Prime read line
+5 8	//y & x size of map
+  ▓■▓   
+ ▓▓║▓▓▓ 
+▓▓═╬═══▓
+ ▓▓║▓▓▓ 
+  ▓■▓   
+9	//Number of rooms
+--------------------
+0
+Port Airlock
+"This is the port airlock."
+0 3
+1
+--------------------
+1
+North Corridor
+"A cluttered utility corridor, in desperate need of tidying."
+1 3
+0 3
+--------------------
+2
+Engineering
+"In a shocking state of disarray."
+2 2
+3
+--------------------
+3
+Corridor Junction
+"This junction connects all parts of the ship."
+2 3
+1 2 4 7
+--------------------
+4
+Central Corridor
+"An unremarkable mid-ship corridor."
+2 4
+3 5
+--------------------
+5
+Galley
+"I don't know what a galley is."
+2 5
+4 6
+--------------------
+6
+Bridge
+"Somewhere beneath all this mess are controls that can actually make this thing fly."
+2 6
+5
+--------------------
+7
+South Corridor
+"I know South doesn't mean anything in space. Step off."
+3 3
+3 8
+--------------------
+8
+South Airlock
+"Yeah, I said 'South' airlock. Deal with it."
+4 3
+7
+--------------------
+[KEY]
+0				//ID
+Port Airlock			//name
+"This is the port airlock."	//Description
+0 3				//y & x coordinates
+1				//Adjacent room IDs
+--------------------
+0
+Name
+"Description."
+0 0
+0
+--------------------
