@@ -6,6 +6,7 @@
  ▓▓║▓▓▓ 
   ▓■▓   
 9	//Number of rooms
+3	//Starting room
 --------------------
 0
 Port Airlock
