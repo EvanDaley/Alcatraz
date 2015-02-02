@@ -7,22 +7,29 @@ public class Weapon extends Item
    
 //CONSTRUCTORS---------------------------------------------------------------------------
 
-   private Weapon() {} //Hidden default constructor
+   private Weapon() {super("", "");} //Hidden default constructor
    
    public Weapon(String name, String desc, int dam, int spd, int acc)
    {
       super(name, desc);
       this.damage = dam;
-      this.spd = spd;
-      this.acc = acc;
+      this.speed = spd;
+      this.accuracy = acc;
    }
 
 //GETS & SETS----------------------------------------------------------------------------
 
-
+   public int getSpeed() {return this.speed;}
 
 //CLASS-LEVEL METHODS--------------------------------------------------------------------
 
-   //May need an attack() method if we decided to give different behaviors to different weapons (targeting restrictions, splash damage, etc.). For now, we only need call the target's defend() method and pass this weapon's properties as parameters.
+   public void equip(PC owner)
+   {
+      owner.setWeapon(this);
+   }
 
+   public static void attack(Weapon w, Character target)
+   {
+      target.getDef().defend(target, w.damage, w.accuracy);
+   }
 }

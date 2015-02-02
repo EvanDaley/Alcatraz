@@ -1,13 +1,17 @@
-public abstract class DefenseDecorator extends Defense
+public class Thug extends Enemy
 {
-   protected Defense defRef;
-  
-//CONSTRUCTORS---------------------------------------------------------------------------
+   //Currently no data fields
    
-   public DefenseDecorator(String n, String desc, Defense def)//Method used for decorating Defense objects
+//CONSTRUCTORS---------------------------------------------------------------------------
+
+   public Thug()
    {
-      super(n, desc);
-      this.defRef = def;
+      super("Thug", 50, new Weapon("Unarmed", "Empty-handed", 10, 50, 95));
+   }
+   
+   public Thug(int num)
+   {
+      super("Thug " + num, 50, new Weapon("Unarmed", "Empty-handed", 10, 50, 95));
    }
 
 //GETS & SETS----------------------------------------------------------------------------

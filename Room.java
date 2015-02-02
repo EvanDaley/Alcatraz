@@ -24,7 +24,7 @@ public class Room
       String[] adjRead;
       Scanner sc = new Scanner(new FileInputStream(fin), "UTF-8");
       
-      sc.nextLine();//Prime read //PICKUP: BUGGED HERE. SCANNER FINDS NO FILE CONTENT
+      sc.nextLine();//Prime read //BUGGED? WITHOUT PRIME READ, SCANNER CRASHES TRYING TO READ NEXTINT
       
       int skipRows = sc.nextInt();
       sc.nextLine();//Skip x & y line
@@ -33,6 +33,7 @@ public class Room
          sc.nextLine();
       
       map = new Room[sc.nextInt()];//Get number of rooms
+      sc.nextLine();//Skip starting room
       sc.nextLine();
       
       for(int i = 0; i < map.length; i++)
@@ -69,6 +70,23 @@ public class Room
       
       return map;
    }//end initMap()
+   
+   public static int locateStart(File fin) throws FileNotFoundException
+   {
+      Scanner sc = new Scanner(new FileInputStream(fin), "UTF-8");
+      
+      sc.nextLine();//Prime read
+      
+      int skipRows = sc.nextInt();
+      sc.nextLine();//Skip x & y line
+      
+      for(int i = 0; i < skipRows; i++)
+         sc.nextLine();
+      
+      sc.nextLine(); //Skip number of rooms
+      
+      return sc.nextInt();//Return starting room
+   }
 
 //GETS & SETS----------------------------------------------------------------------------
 
