@@ -69,6 +69,8 @@ public class Combat extends Observable
          
          timeElapsed = actor.getDelay();
          
+         
+         timeElapsed = timeElapsed;
          //Modify action delay times
          //currently this walks thru the list and informs each member of the chance
          //instead we should just update observers
