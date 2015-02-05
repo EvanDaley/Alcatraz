@@ -1,4 +1,7 @@
-public abstract class Character implements Comparable<Character>
+import java.util.Observable;
+import java.util.Observer;
+
+public abstract class Character implements Comparable<Character>, Observer
 {
    private String name;
    private int maxHp; //Maximum Hit Points
@@ -6,6 +9,7 @@ public abstract class Character implements Comparable<Character>
    private Defense defense;
    private int actionDelay;
    private boolean defeated;
+   Observable combatTimer;
 
 //CONSTRUCTORS---------------------------------------------------------------------------
 
@@ -30,6 +34,7 @@ public abstract class Character implements Comparable<Character>
    public void modDelay(int mod) {this.actionDelay -= mod;}
    public abstract Weapon getWeapon();
    public boolean defeated() {return this.defeated;}
+   public void subscribeToTimer(Observable timer){timer.addObserver(this); combatTimer = timer;}
    
 //CLASS-LEVEL METHODS--------------------------------------------------------------------
 
@@ -57,4 +62,12 @@ public abstract class Character implements Comparable<Character>
    {
       return this.actionDelay - that.actionDelay;
    }
+   
+   public void update(Observable obs, Object args){
+      if(obs instanceof CombatTimer){
+         CombatTimer myTimer = (CombatTimer)obs;
+         actionDelay -= myTimer.getChange();
+      }
+   }
+
 }

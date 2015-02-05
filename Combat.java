@@ -7,6 +7,7 @@ public class Combat extends Observable
 {
    private int timeElapsed; //Measure time 
    private ArrayList<Character> actionQueue;
+   private CombatTimer timer; 
    
 //CONSTRUCTORS---------------------------------------------------------------------------
 
@@ -15,6 +16,7 @@ public class Combat extends Observable
    public Combat(Party party, Enemy[] enemies)
    {
       this.timeElapsed = 0;
+      timer = new CombatTimer();
       this.actionQueue = new ArrayList<Character>(party.size() + enemies.length);
    }
 
@@ -50,6 +52,7 @@ public class Combat extends Observable
          actor = party.getPartyMembers()[i];
          actor.setDelay(rnd.nextInt(20));
          actionQueue.add(actor);
+         actor.subscribeToTimer(timer);
       }
       
       for(j = 0; i < party.size() + enemies.length; i++, j++)
@@ -57,6 +60,7 @@ public class Combat extends Observable
          actor = enemies[j];
          actor.setDelay(rnd.nextInt(20));
          actionQueue.add(actor);
+         actor.subscribeToTimer(timer);
       }
       
       actionQueue.trimToSize();
@@ -66,16 +70,11 @@ public class Combat extends Observable
       while(partyDefeat < ps && enemyDefeat < es)
       {
          actor = actionQueue.remove(0);
-         
+                  
          timeElapsed = actor.getDelay();
          
-         
-         timeElapsed = timeElapsed;
-         //Modify action delay times
-         //currently this walks thru the list and informs each member of the chance
-         //instead we should just update observers
-         for(i = 0; i < actionQueue.size(); i++)
-            actionQueue.get(i).modDelay(timeElapsed);
+         //Update the timer and this wil notify all subscribed objects
+         timer.addTime(timeElapsed);
          
          //If the next character to act is a PC, target a random enemy to attack. If the next character is an enemy, target random PC.
          //This method might lag if, for instance, there are 6 defeated enemies in a 7-enemy party. Consider revision.
@@ -90,7 +89,7 @@ public class Combat extends Observable
          //Attack
          System.out.print(actor.getName() + " ");
          Weapon.attack(actor.getWeapon(), target);
-         actor.setDelay(actor.getWeapon().getSpeed());
+         actor.setDelay(actor.getWeapon().getSpeed()); 
          actionQueue.add(actor);
             
          if(target.defeated())
