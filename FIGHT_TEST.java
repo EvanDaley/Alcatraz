@@ -1,5 +1,5 @@
 import java.io.*;
-
+import java.util.*;
 public class FIGHT_TEST
 {
    public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException
@@ -10,14 +10,21 @@ public class FIGHT_TEST
       Map map = null;
       Enemy[] enemies = null;
       Combat combat;
+      int NumofParty = 0;
+      Scanner kb = new Scanner(System.in);
       
       File fin = new File("corvette.txt");
       
       map = Map.initMap(fin); //Initialize display map & components
       
       rooms = Room.initRooms(fin); //Initialize rooms
-      
-      party = Party.test_createParty(4); //[DEV:TEST]Create party of 4 PCs. This is a testing method.
+      while (NumofParty < 1)
+      {
+    	  System.out.println("Welcome Commander");
+    	  System.out.println("How many in your Crew? (we suggest atleast 3 and no more than 6)");
+    	  NumofParty = kb.nextInt();
+      }
+      party = Party.test_createParty(NumofParty); //[DEV:TEST]Create party of 4 PCs. This is a testing method.
       party.setLocation(rooms[Room.locateStart(fin)]); //Set initial party location
       
       do
