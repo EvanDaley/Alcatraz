@@ -20,6 +20,9 @@ public class Weapon extends Item
 //GETS & SETS----------------------------------------------------------------------------
 
    public int getSpeed() {return this.speed;}
+   public void setSpeed(int speed) {this.speed = speed;}
+   public int getDamage() {return this.damage;}
+   public void setDamage(int damage) {this.damage = damage;}
 
 //CLASS-LEVEL METHODS--------------------------------------------------------------------
 
