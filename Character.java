@@ -6,21 +6,16 @@ public abstract class Character implements Comparable<Character>, Observer
    private String name;
    private int maxHp; //Maximum Hit Points
    private int curHp; //Current Hit Points
-   private Defense defense;
    private int actionDelay;
    private boolean defeated;
    Observable combatTimer;
 
-//CONSTRUCTORS---------------------------------------------------------------------------
-
-   private Character() {};
-   
+//CONSTRUCTORS--------------------------------------------------------------------------- 
    public Character(String n, int hitPoints)
    {
       this.name = n;
       this.maxHp = hitPoints;
       this.curHp = hitPoints;
-      defense = new Defense();
       this.actionDelay = 0;
       this.defeated = false;
    }
@@ -28,21 +23,21 @@ public abstract class Character implements Comparable<Character>, Observer
 //GETS & SETS----------------------------------------------------------------------------
 
    public String getName() {return this.name;}
-   public Defense getDef() {return this.defense;}
    public int getDelay() {return this.actionDelay;}
    public void setDelay(int delay) {this.actionDelay = delay;}
    public void modDelay(int mod) {this.actionDelay -= mod;}
    public abstract Weapon getWeapon();
    public boolean defeated() {return this.defeated;}
    public void subscribeToTimer(Observable timer){timer.addObserver(this); combatTimer = timer;}
+   public abstract void defend(int damage,int acc);
+   
+   public int getCurHp(){return this.curHp;}
+   public void setCurHp(int HP){this.curHp = HP;}
+   public void setDef(boolean f){this.defeated=f;}
    
 //CLASS-LEVEL METHODS--------------------------------------------------------------------
 
-   public void defend(int damage, int acc)
-   {
-      defense.defend(this, damage, acc);
-   }
-   
+    
    public void harm(int damage)
    {
       this.curHp -= damage;
