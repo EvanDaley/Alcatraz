@@ -1,3 +1,4 @@
+import java.util.*;
 public class PC extends Character
 {
    private Weapon primary; //Each PC may equip one primary weapon. Weapon stats are passed to an attack()-type method.
@@ -25,7 +26,18 @@ public class PC extends Character
    public static PC[] test_createPC_Party(int partySize)
    {
       PC[] party = new PC[partySize];
-      String[] names = {"Grant", "Helena", "Bob", "Luce", "DeFoe", "Barbarella"};
+      String[] names = new String[partySize];
+      Scanner kb = new Scanner(System.in);
+      String PlayerName=null;;
+      
+      for(int x=0; x<partySize; x++)
+      {
+    	  System.out.printf("What shall we call Party Member #%d ",x+1);
+    	  PlayerName = kb.next();
+    	  names[x]=PlayerName;
+    	  PlayerName=null;
+      }
+      //String[] names = {"Grant", "Helena", "Bob", "Luce", "DeFoe", "Barbarella"};
       
       for(int i = 0; i < party.length; i++)
       {
@@ -33,7 +45,7 @@ public class PC extends Character
          party[i].setWeapon(new Weapon("Unarmed", "Empty-handed", 10, 50, 95));
          party[i].defense = new Defense();
       }
-      
+      kb.close();
       return party;
    }
 
