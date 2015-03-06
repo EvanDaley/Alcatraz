@@ -1,3 +1,6 @@
+import java.util.Scanner;
+
+
 class Party
 {
    private Room location;
@@ -17,11 +20,28 @@ class Party
    {
       Party newParty = new Party();
       
-      newParty.party = PC.test_createPC_Party(partySize);
+      //newParty.party = PC.test_createPC_Party(partySize);
       
       newParty.size = partySize;
       
       return newParty;
+   }
+   public static Party CreateParty()
+   {
+	   Party newParty = new Party();
+	   int NumofParty = 0;
+	   Scanner kb = new Scanner(System.in);
+
+	   while (NumofParty < 1)
+	      {
+	    	  System.out.println("Welcome Commander");
+	    	  System.out.println("How many in your Crew? (we suggest atleast 3 and no more than 6)");
+	    	  NumofParty = kb.nextInt();
+	      }
+	   newParty.party = PC.createPC_Party(NumofParty);
+	   newParty.size = NumofParty;
+	   kb.close();
+	   return newParty;
    }
    
 //GETS & SETS----------------------------------------------------------------------------
