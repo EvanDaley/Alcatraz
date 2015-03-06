@@ -33,6 +33,8 @@ public class Weapon extends Item
 
    public static void attack(Weapon w, Character target)
    {
-      target.getDef().defend(target, w.damage, w.accuracy);
+      target.defend(w.damage, w.accuracy);
+      //character.getDef().defend
    }
+
 }
